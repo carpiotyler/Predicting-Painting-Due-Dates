@@ -7,7 +7,7 @@ imageData = []
     Title, URL to image, URL to details, objectType, Painter, earliestDate, latestDate
 '''
 
-filterString = 'images object type paintings online media data source smithsonian museum american art topic landscapes'
+filterString = 'images online media data source smithsonian american art museum topic landscapes or portaits object type painting location united states of america'
 
 response = requests.get("https://api.si.edu/openaccess/api/v1.0/search",
             {

@@ -1,0 +1,3806 @@
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://unpkg.com/simple-statistics@7.1.0/dist/simple-statistics.min.js"></script>
+    </head>
+    <div id="timeVersusBrightness"></div>
+    <script type="text/javascript">
+        (function() {
+            let data = getData();
+            let trace = {
+                x: [],
+                y: [],
+                mode: 'markers',
+                type: 'scatter'
+            }
+            let linearRegressionData = []
+            data.forEach(row => {
+                trace.x.push(row['earliestDate']);
+                trace.y.push(row['perceivedBrightness']);
+                linearRegressionData.push([row['earliestDate'], row['perceivedBrightness']]);
+            })
+            let res = ss.linearRegression(linearRegressionData);
+            let m = res.m
+            let b = res.b
+
+            let layout = {
+                title: 'Painting correlation testing (perceivedBrightness)',
+                shapes: [
+                    {
+                        type: 'line',
+                        x0: 0,
+                        y0: b,
+                        x1: Math.max(...trace.x),
+                        y1: Math.max(...trace.x) * m + b,
+                        line: {
+                            color: 'purple',
+                            width: 2
+                        }
+                    }
+                ],
+                xaxis: {
+                    range: [Math.min(...trace.x), Math.max(...trace.x)]
+                },
+                yaxis: {
+                    range: [0, Math.max(...trace.y)]
+                }
+            }
+
+            var pData = [trace]
+            Plotly.newPlot('timeVersusBrightness', pData, layout)
+        })();
+
+        function getData() {
+            return JSON.parse(
+                `
+                [
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 8236.204714185951,
+        "perceivedBrightness": 123.68975469608104
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11433.033618710411,
+        "perceivedBrightness": 117.18122423404633
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 14537.160905197195,
+        "perceivedBrightness": 101.83482673054318
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 6800.932313155675,
+        "perceivedBrightness": 81.11211495424713
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13087.090371902525,
+        "perceivedBrightness": 129.92853503534369
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 8316.968150404555,
+        "perceivedBrightness": 109.05573848642209
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 6994.882626113875,
+        "perceivedBrightness": 143.87229949734336
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 8365.365737352895,
+        "perceivedBrightness": 132.34075373737824
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 2677.3854176684486,
+        "perceivedBrightness": 158.86841881842906
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 17288.68952568774,
+        "perceivedBrightness": 65.28214620735879
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 47247.78301549086,
+        "perceivedBrightness": 233.52227745370476
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 9521.608840430079,
+        "perceivedBrightness": 162.80022864367436
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 63469.704073144756,
+        "perceivedBrightness": 100.18481010594644
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12540.875620938266,
+        "perceivedBrightness": 179.81465425241615
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12426.691321632037,
+        "perceivedBrightness": 127.57797782239287
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10359.072218991489,
+        "perceivedBrightness": 146.97774849257053
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 14980.831956646509,
+        "perceivedBrightness": 149.93231954604212
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 13083.239885381507,
+        "perceivedBrightness": 70.77489113677262
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 30950.630378715126,
+        "perceivedBrightness": 134.7814441966838
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 14608.02336434609,
+        "perceivedBrightness": 75.02810761424212
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 6168.150805182113,
+        "perceivedBrightness": 133.3816243113328
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1900,
+        "contrast": 9047.20551101796,
+        "perceivedBrightness": 138.36838422786286
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 10749.611396954386,
+        "perceivedBrightness": 105.11580863742537
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 9741.472111720443,
+        "perceivedBrightness": 127.17601417717002
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13215.258945036794,
+        "perceivedBrightness": 177.6390788673559
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9007.066607452936,
+        "perceivedBrightness": 118.27772512308613
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7147.773965379449,
+        "perceivedBrightness": 109.76433941836436
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 16001.266097367108,
+        "perceivedBrightness": 146.43738967335585
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 5991.461440693122,
+        "perceivedBrightness": 127.03888337936318
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11033.861159800317,
+        "perceivedBrightness": 133.87097685084552
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 2789.8988745954125,
+        "perceivedBrightness": 136.56282238146053
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 10755.707923041666,
+        "perceivedBrightness": 161.54944297700567
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 10425.576072775008,
+        "perceivedBrightness": 185.37651764737606
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 9891.030719759126,
+        "perceivedBrightness": 108.67556632031092
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 12315.280944826229,
+        "perceivedBrightness": 134.5718564356994
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7383.233257851451,
+        "perceivedBrightness": 149.12362134352833
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 12237.729215645717,
+        "perceivedBrightness": 89.65201683846112
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 10428.96306285559,
+        "perceivedBrightness": 153.33260529064341
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13413.73508729718,
+        "perceivedBrightness": 148.46591430121896
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 4261.614888283481,
+        "perceivedBrightness": 126.22143029719521
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1970,
+        "contrast": 13223.800672373138,
+        "perceivedBrightness": 174.66409882068007
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 8691.797193369639,
+        "perceivedBrightness": 148.8359282005194
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 7314.091138589521,
+        "perceivedBrightness": 155.10781010627744
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1930,
+        "contrast": 12834.280514474458,
+        "perceivedBrightness": 167.45375111252716
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 17311.702009023225,
+        "perceivedBrightness": 152.6909369758345
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 10802.897538464507,
+        "perceivedBrightness": 143.57393153487033
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 16945.52213632428,
+        "perceivedBrightness": 193.7566082178471
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1950,
+        "contrast": 8421.925829392067,
+        "perceivedBrightness": 151.26044613553037
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 12596.872274714417,
+        "perceivedBrightness": 105.63106964473556
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 19782.14136597546,
+        "perceivedBrightness": 213.18454735377833
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 7246.2495738636235,
+        "perceivedBrightness": 109.02943261971444
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 14556.435361099742,
+        "perceivedBrightness": 135.87054661845
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 10925.240258907066,
+        "perceivedBrightness": 104.23023166993505
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12675.346957775948,
+        "perceivedBrightness": 85.42064508452366
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 7058.456345715755,
+        "perceivedBrightness": 173.19179636404962
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 16854.380266041935,
+        "perceivedBrightness": 137.60963759076313
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 9146.210514384496,
+        "perceivedBrightness": 173.20904640469752
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 13657.758529952856,
+        "perceivedBrightness": 161.4223402633109
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 19380.888334359348,
+        "perceivedBrightness": 126.87995603195245
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9918.787384341962,
+        "perceivedBrightness": 110.79028454444905
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 9444.067570355344,
+        "perceivedBrightness": 130.6691095309135
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7856.0647487108645,
+        "perceivedBrightness": 161.7877127600952
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 17831.377001168825,
+        "perceivedBrightness": 135.629980021531
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1930,
+        "contrast": 8106.213441513553,
+        "perceivedBrightness": 101.33865489038656
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 8415.151043792604,
+        "perceivedBrightness": 140.3486529647376
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 22172.207091857563,
+        "perceivedBrightness": 95.91642057848249
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 12892.30716554571,
+        "perceivedBrightness": 115.74147878348484
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 8732.792857823679,
+        "perceivedBrightness": 106.82548611703305
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1900,
+        "contrast": 7785.233896564621,
+        "perceivedBrightness": 131.45511880844072
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 10971.797761049691,
+        "perceivedBrightness": 198.01208178943745
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 15124.007485085436,
+        "perceivedBrightness": 170.071478278275
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 11737.80397586283,
+        "perceivedBrightness": 173.12040291626136
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 14430.394490352699,
+        "perceivedBrightness": 97.33108654640924
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11315.613426015898,
+        "perceivedBrightness": 183.91380435877886
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1920,
+        "contrast": 13033.688081575856,
+        "perceivedBrightness": 78.28729647143327
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 11103.73686904689,
+        "perceivedBrightness": 128.3857604530156
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 8966.253601395136,
+        "perceivedBrightness": 143.30787987156495
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 24340.695670795467,
+        "perceivedBrightness": 173.82018513026605
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 12362.026503982113,
+        "perceivedBrightness": 166.48611391091976
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 14943.651200922877,
+        "perceivedBrightness": 77.00111351825092
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 6727.740156492465,
+        "perceivedBrightness": 118.88510314716373
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 11952.178804543599,
+        "perceivedBrightness": 102.16590062570971
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 7191.615730856122,
+        "perceivedBrightness": 107.978728688885
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 9179.707007426081,
+        "perceivedBrightness": 150.48982124401743
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9586.915762226727,
+        "perceivedBrightness": 130.36110493734688
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13352.464407220628,
+        "perceivedBrightness": 131.39364098932882
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 11510.28029564767,
+        "perceivedBrightness": 87.91222097605518
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1860,
+        "contrast": 12112.695675250203,
+        "perceivedBrightness": 111.86633680356043
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 15377.44348964885,
+        "perceivedBrightness": 141.24644438750462
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 15604.482728330024,
+        "perceivedBrightness": 79.98585059834532
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 13037.441974792975,
+        "perceivedBrightness": 171.69157665930175
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9247.062803728206,
+        "perceivedBrightness": 167.74301809801165
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 7076.19405725546,
+        "perceivedBrightness": 156.70503651300362
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 15666.51363415673,
+        "perceivedBrightness": 125.46703503694515
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10003.896415701922,
+        "perceivedBrightness": 172.60864297562296
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1910,
+        "contrast": 9654.769048449903,
+        "perceivedBrightness": 148.858401522846
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1940,
+        "contrast": 11692.331622959127,
+        "perceivedBrightness": 141.12986851822512
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 10661.353456636909,
+        "perceivedBrightness": 150.72540020127903
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 10739.192932606715,
+        "perceivedBrightness": 143.11573345699856
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 14667.753577283273,
+        "perceivedBrightness": 131.91807129120156
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 17925.843797804366,
+        "perceivedBrightness": 66.33823062506833
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 19132.210535446662,
+        "perceivedBrightness": 99.25764274933212
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 5633.595519778532,
+        "perceivedBrightness": 151.4383806600292
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1900,
+        "contrast": 10090.817275823209,
+        "perceivedBrightness": 165.49520782056865
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 7739.065831313638,
+        "perceivedBrightness": 153.7781283072986
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 9000.963957925562,
+        "perceivedBrightness": 137.13689891351518
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 3336.796906863864,
+        "perceivedBrightness": 137.6766516058523
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 14295.558135937497,
+        "perceivedBrightness": 123.48660350329035
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 14739.100629787423,
+        "perceivedBrightness": 168.5735450746604
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 12741.217332165274,
+        "perceivedBrightness": 183.11571615251424
+    },
+    {
+        "earliestDate": 1710,
+        "latestDate": 1790,
+        "contrast": 14758.085938705559,
+        "perceivedBrightness": 111.43909452318232
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 18113.77801219282,
+        "perceivedBrightness": 180.18823245270218
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1880,
+        "contrast": 19355.01639322559,
+        "perceivedBrightness": 66.71758642091498
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11628.202107544668,
+        "perceivedBrightness": 78.68094606016003
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 9686.931624657069,
+        "perceivedBrightness": 168.7221307199329
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 17994.083360167482,
+        "perceivedBrightness": 67.2488785035173
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 16203.090235980064,
+        "perceivedBrightness": 185.12740446048474
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 21904.31374262057,
+        "perceivedBrightness": 49.89863640271112
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 6767.04096845512,
+        "perceivedBrightness": 154.2236410489158
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 5227.199214580046,
+        "perceivedBrightness": 142.15935057256362
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1910,
+        "contrast": 16584.359241089176,
+        "perceivedBrightness": 211.1040922211232
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 10670.589309266441,
+        "perceivedBrightness": 170.98833151980548
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 10149.911386235719,
+        "perceivedBrightness": 160.85699945740498
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 16572.33051325688,
+        "perceivedBrightness": 185.66731766352515
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 14864.547908477994,
+        "perceivedBrightness": 100.26703708933995
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 13243.514460948187,
+        "perceivedBrightness": 164.89613010082883
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 9563.964816116079,
+        "perceivedBrightness": 161.80195738190508
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 9170.565533227422,
+        "perceivedBrightness": 116.39445784514066
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 8001.292021155865,
+        "perceivedBrightness": 113.97357604629751
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 20916.91330442131,
+        "perceivedBrightness": 195.2282561572938
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 20519.71273689492,
+        "perceivedBrightness": 75.6448844345803
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7182.426820731016,
+        "perceivedBrightness": 161.6580390180004
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 14211.833945612236,
+        "perceivedBrightness": 69.17834283015029
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 6290.841330110386,
+        "perceivedBrightness": 132.15848470389986
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 17148.40787377851,
+        "perceivedBrightness": 197.2702960475115
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 8801.771619431227,
+        "perceivedBrightness": 99.44787958930554
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1960,
+        "contrast": 13231.540937401245,
+        "perceivedBrightness": 180.0883449831931
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 10642.569811074472,
+        "perceivedBrightness": 100.35028322444052
+    },
+    {
+        "earliestDate": 1760,
+        "latestDate": 1850,
+        "contrast": 16310.343584838081,
+        "perceivedBrightness": 83.44464108439695
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 16787.70363886298,
+        "perceivedBrightness": 131.5388707303035
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10602.322548105321,
+        "perceivedBrightness": 146.52507954856836
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13546.860890275235,
+        "perceivedBrightness": 159.56954867894484
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 10262.71469096384,
+        "perceivedBrightness": 108.35952796399036
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9422.662935544018,
+        "perceivedBrightness": 159.49171893205923
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1930,
+        "contrast": 10288.827513831448,
+        "perceivedBrightness": 108.0096216889933
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 11601.689128932645,
+        "perceivedBrightness": 90.1179466102224
+    },
+    {
+        "earliestDate": 1750,
+        "latestDate": 1810,
+        "contrast": 28364.701266494947,
+        "perceivedBrightness": 101.88899558142735
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 8459.072139942418,
+        "perceivedBrightness": 124.97253221350599
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1890,
+        "contrast": 7807.424800845588,
+        "perceivedBrightness": 111.79247031978765
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 7849.740132292995,
+        "perceivedBrightness": 132.88096927561304
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11060.439637403942,
+        "perceivedBrightness": 163.57343251116058
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 9216.165134857814,
+        "perceivedBrightness": 122.68475644241974
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 17728.34223157975,
+        "perceivedBrightness": 131.07625575000333
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 38496.253422157446,
+        "perceivedBrightness": 204.6842486758413
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1930,
+        "contrast": 7634.37462878632,
+        "perceivedBrightness": 138.55122676556076
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 11022.175633127064,
+        "perceivedBrightness": 172.04181939765402
+    },
+    {
+        "earliestDate": 1770,
+        "latestDate": 1800,
+        "contrast": 9353.663674138934,
+        "perceivedBrightness": 117.17846236496854
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 11197.24540571391,
+        "perceivedBrightness": 122.98998068450409
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 16255.35117745365,
+        "perceivedBrightness": 141.5441243174139
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10549.302424731102,
+        "perceivedBrightness": 133.5079184429747
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 14241.769655828854,
+        "perceivedBrightness": 79.8999922869106
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 15397.070054198826,
+        "perceivedBrightness": 187.44867243278162
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 13577.541257014744,
+        "perceivedBrightness": 87.57390631663233
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 5743.401374417102,
+        "perceivedBrightness": 126.71715446055522
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 11012.565658856478,
+        "perceivedBrightness": 166.9280976531114
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 33638.671223687066,
+        "perceivedBrightness": 87.31191157146571
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 8752.413696385704,
+        "perceivedBrightness": 142.17165081822336
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 11614.79752584634,
+        "perceivedBrightness": 159.57895873033644
+    },
+    {
+        "earliestDate": 1800,
+        "latestDate": 1900,
+        "contrast": 6142.9142952724405,
+        "perceivedBrightness": 112.54794460889022
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 12334.80174014767,
+        "perceivedBrightness": 150.8184498140065
+    },
+    {
+        "earliestDate": 1800,
+        "latestDate": 1860,
+        "contrast": 13282.314251330366,
+        "perceivedBrightness": 95.38472365214807
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14438.493370993345,
+        "perceivedBrightness": 84.05393908342707
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 25119.602180197962,
+        "perceivedBrightness": 188.11838079580286
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 28465.382592273312,
+        "perceivedBrightness": 223.65509333824676
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 7454.120447674393,
+        "perceivedBrightness": 113.3605308613013
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 15646.624219580082,
+        "perceivedBrightness": 74.1911523638627
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 14380.535417791083,
+        "perceivedBrightness": 111.04582066201625
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1940,
+        "contrast": 8999.76899486523,
+        "perceivedBrightness": 153.66925327538394
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13456.931213017142,
+        "perceivedBrightness": 165.9180470917278
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10645.930537247848,
+        "perceivedBrightness": 161.62423855804144
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1890,
+        "contrast": 6364.0155690660295,
+        "perceivedBrightness": 118.03460478336795
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10571.420136349645,
+        "perceivedBrightness": 95.75390905197882
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 7730.37566701061,
+        "perceivedBrightness": 110.32387328047649
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 6382.5751078865105,
+        "perceivedBrightness": 158.24596521980132
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 9375.678565859247,
+        "perceivedBrightness": 98.95441021069821
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 7367.159997032439,
+        "perceivedBrightness": 114.07031401095966
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 7145.5135539175035,
+        "perceivedBrightness": 150.95337809524173
+    },
+    {
+        "earliestDate": 1800,
+        "latestDate": 1900,
+        "contrast": 14844.354491112523,
+        "perceivedBrightness": 116.0618783562498
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 7793.611288563285,
+        "perceivedBrightness": 149.40378937776597
+    },
+    {
+        "earliestDate": 1770,
+        "latestDate": 1780,
+        "contrast": 9752.395973233963,
+        "perceivedBrightness": 153.06231468510737
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 8084.7092115397845,
+        "perceivedBrightness": 145.5421936160585
+    },
+    {
+        "earliestDate": 1710,
+        "latestDate": 1790,
+        "contrast": 28429.73270084343,
+        "perceivedBrightness": 80.42513829346535
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13120.105476067065,
+        "perceivedBrightness": 201.50826392300615
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 8696.138468632213,
+        "perceivedBrightness": 101.84213166101748
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 19838.23587137428,
+        "perceivedBrightness": 61.39955659961085
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 17557.719906699967,
+        "perceivedBrightness": 62.129301672775895
+    },
+    {
+        "earliestDate": 1710,
+        "latestDate": 1790,
+        "contrast": 10215.30079613267,
+        "perceivedBrightness": 119.39288219438583
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 6548.455231264721,
+        "perceivedBrightness": 123.91188371474081
+    },
+    {
+        "earliestDate": 1770,
+        "latestDate": 1850,
+        "contrast": 11785.546118529954,
+        "perceivedBrightness": 161.23879517615822
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8955.86815131565,
+        "perceivedBrightness": 105.09015344601397
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 5938.7979663528085,
+        "perceivedBrightness": 143.77409442828812
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 10879.217587151832,
+        "perceivedBrightness": 111.2434664264744
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1920,
+        "contrast": 6207.5867496077935,
+        "perceivedBrightness": 119.42951067631883
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10740.795813305689,
+        "perceivedBrightness": 180.76907800712866
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 11023.338654765908,
+        "perceivedBrightness": 96.14758383298145
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1930,
+        "contrast": 22969.703870754543,
+        "perceivedBrightness": 63.58120132340613
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 29206.47649307641,
+        "perceivedBrightness": 151.02435443976424
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 16458.870416012567,
+        "perceivedBrightness": 171.95751542209968
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7499.173774021292,
+        "perceivedBrightness": 111.83066184359929
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13601.730199856469,
+        "perceivedBrightness": 117.68499299171417
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 13710.701494834928,
+        "perceivedBrightness": 190.05636689276656
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 31077.39915680787,
+        "perceivedBrightness": 205.31476430673888
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15324.369873999918,
+        "perceivedBrightness": 64.94370912556462
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 17353.078385157092,
+        "perceivedBrightness": 82.35282528246151
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1910,
+        "contrast": 13739.56513737107,
+        "perceivedBrightness": 161.0671440442464
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 8819.267900720983,
+        "perceivedBrightness": 101.57948534219035
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12250.533078896928,
+        "perceivedBrightness": 97.37122383992771
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 8232.496097047346,
+        "perceivedBrightness": 139.6881712085698
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 11474.727903398461,
+        "perceivedBrightness": 95.29118929665029
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 10016.465919456074,
+        "perceivedBrightness": 158.26539135664095
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 18188.195153059616,
+        "perceivedBrightness": 65.75272906834138
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 14695.405354969798,
+        "perceivedBrightness": 67.11454823360326
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 13955.304630850727,
+        "perceivedBrightness": 164.2732320960587
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 14151.992648867288,
+        "perceivedBrightness": 102.4365795646804
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 11680.123357419272,
+        "perceivedBrightness": 137.00611162300686
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 8722.8002809985,
+        "perceivedBrightness": 181.58045332582284
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 21200.571024782334,
+        "perceivedBrightness": 60.10704689760148
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7717.049173947578,
+        "perceivedBrightness": 111.01029850007109
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 15110.936448660908,
+        "perceivedBrightness": 158.12672868966928
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 11381.694504979805,
+        "perceivedBrightness": 169.96919250787442
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 8951.742566263634,
+        "perceivedBrightness": 145.68106227836847
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9322.566018010077,
+        "perceivedBrightness": 105.92059601832507
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 10295.974741183749,
+        "perceivedBrightness": 138.99806432510096
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 10252.437529503482,
+        "perceivedBrightness": 89.67143201179779
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 11868.696263701419,
+        "perceivedBrightness": 160.1505236139286
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 9616.428585815722,
+        "perceivedBrightness": 167.2432196482193
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 10281.716038449636,
+        "perceivedBrightness": 177.31643617812009
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 7432.9600781544295,
+        "perceivedBrightness": 158.0063432116632
+    },
+    {
+        "earliestDate": 1810,
+        "latestDate": 1820,
+        "contrast": 23777.06983530824,
+        "perceivedBrightness": 53.795005568422916
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 23912.04309057729,
+        "perceivedBrightness": 192.7497061432204
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 9284.257168765913,
+        "perceivedBrightness": 169.9543312075185
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 9325.938181901929,
+        "perceivedBrightness": 110.0520907505364
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10055.694319832233,
+        "perceivedBrightness": 97.64314611622694
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 12950.699218725846,
+        "perceivedBrightness": 144.07016779719243
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9206.821046656454,
+        "perceivedBrightness": 108.55227112338872
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12735.26288009007,
+        "perceivedBrightness": 116.55696028236447
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 11807.800966647801,
+        "perceivedBrightness": 91.07555817184337
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7639.7266118052285,
+        "perceivedBrightness": 171.59234555654353
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 8248.619393476552,
+        "perceivedBrightness": 130.68606517185776
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13737.965389210887,
+        "perceivedBrightness": 163.52730043642367
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 8969.14380211226,
+        "perceivedBrightness": 161.10007837272914
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 12700.25802626048,
+        "perceivedBrightness": 103.37099933488975
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15567.437340537539,
+        "perceivedBrightness": 92.60795711975018
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13239.188984702056,
+        "perceivedBrightness": 87.0757003170399
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 21125.659554885056,
+        "perceivedBrightness": 66.43405958800903
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 14037.014341971684,
+        "perceivedBrightness": 95.11054811315212
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 14953.59699725287,
+        "perceivedBrightness": 76.35612842734928
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 21020.604551323566,
+        "perceivedBrightness": 83.0970865823277
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 30302.211630880283,
+        "perceivedBrightness": 216.8718750815026
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8188.912422064972,
+        "perceivedBrightness": 146.9130291820023
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 20836.755344185367,
+        "perceivedBrightness": 190.28508107410104
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10431.696378220435,
+        "perceivedBrightness": 164.90515421655948
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 8495.805262349819,
+        "perceivedBrightness": 148.09649694686337
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 10021.61605936918,
+        "perceivedBrightness": 128.24912074323436
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 9317.53329058146,
+        "perceivedBrightness": 126.48943988554016
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 9733.170159787354,
+        "perceivedBrightness": 182.9990489138947
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11909.81770316642,
+        "perceivedBrightness": 90.21949471133156
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 16447.119694051868,
+        "perceivedBrightness": 186.4012657398656
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13508.079855509164,
+        "perceivedBrightness": 122.69509127604351
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 25114.939669634387,
+        "perceivedBrightness": 212.2380165234905
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 13095.713269500522,
+        "perceivedBrightness": 183.40834063968944
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1940,
+        "contrast": 10851.519976878528,
+        "perceivedBrightness": 123.85789565762282
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 13199.076011842884,
+        "perceivedBrightness": 197.68663506156693
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 13831.495457181456,
+        "perceivedBrightness": 117.34825808299834
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 24947.93026195698,
+        "perceivedBrightness": 215.47224640618938
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15604.626072648696,
+        "perceivedBrightness": 113.2946529067223
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10135.537759960926,
+        "perceivedBrightness": 114.14089064819255
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 7884.983828801981,
+        "perceivedBrightness": 110.93401085376202
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 12466.136368459605,
+        "perceivedBrightness": 87.44818286519316
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 11604.246056131782,
+        "perceivedBrightness": 94.78815662957474
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7490.77055527125,
+        "perceivedBrightness": 154.56904169725814
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 12888.020172931529,
+        "perceivedBrightness": 79.65378498704875
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1940,
+        "contrast": 14331.311935376416,
+        "perceivedBrightness": 133.26820794611683
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 13685.153081185053,
+        "perceivedBrightness": 157.83430146391717
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1920,
+        "contrast": 12990.94224925342,
+        "perceivedBrightness": 103.79989457094932
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 15607.519696297439,
+        "perceivedBrightness": 155.96708999691043
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13913.730671646803,
+        "perceivedBrightness": 186.78910473860216
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 21084.589599007937,
+        "perceivedBrightness": 97.39251139116435
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15748.259322957729,
+        "perceivedBrightness": 130.6688696036839
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10566.75683840748,
+        "perceivedBrightness": 188.78337687082038
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 8071.354303520166,
+        "perceivedBrightness": 159.84013221145855
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 15143.113262640421,
+        "perceivedBrightness": 158.46154005352344
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1940,
+        "contrast": 12068.372178025658,
+        "perceivedBrightness": 181.78982167838242
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 28166.559368932405,
+        "perceivedBrightness": 51.072644140639134
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 10575.482005674434,
+        "perceivedBrightness": 161.79743490258022
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 15639.90713275158,
+        "perceivedBrightness": 145.47292036144668
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 6812.15275777874,
+        "perceivedBrightness": 166.5302187431403
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13458.540414831627,
+        "perceivedBrightness": 109.28852999319439
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 11619.089168619776,
+        "perceivedBrightness": 126.58345292803222
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 10284.094383136027,
+        "perceivedBrightness": 112.50229777294932
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 7874.140028937287,
+        "perceivedBrightness": 156.981533925447
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 16227.176415204101,
+        "perceivedBrightness": 92.0517536405128
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 12128.755060450609,
+        "perceivedBrightness": 124.95453554446583
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 12795.074419875651,
+        "perceivedBrightness": 175.14365753600262
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 17922.548467402907,
+        "perceivedBrightness": 187.2763230769372
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 9024.724769219072,
+        "perceivedBrightness": 117.20664534065556
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1930,
+        "contrast": 15055.45276622705,
+        "perceivedBrightness": 202.3972727672558
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11839.700332231017,
+        "perceivedBrightness": 178.08236954939164
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 11354.464671165699,
+        "perceivedBrightness": 96.78904987695805
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7816.741589820611,
+        "perceivedBrightness": 112.72281376636921
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 9139.050911259535,
+        "perceivedBrightness": 137.9053419338664
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 16809.757097116617,
+        "perceivedBrightness": 56.646328257720576
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 16451.34270949677,
+        "perceivedBrightness": 106.4736014829194
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15711.734989332019,
+        "perceivedBrightness": 189.1054487049305
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 38633.766993567704,
+        "perceivedBrightness": 227.28786643682633
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 11307.317559649598,
+        "perceivedBrightness": 147.25725724610197
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 8142.169158969939,
+        "perceivedBrightness": 157.09496541638276
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 15182.788317105367,
+        "perceivedBrightness": 156.2159306263231
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 9867.253591623468,
+        "perceivedBrightness": 156.39957701227652
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 4895.555941122137,
+        "perceivedBrightness": 124.3491306525681
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 9870.239414601983,
+        "perceivedBrightness": 123.4017417989779
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 10187.295430179074,
+        "perceivedBrightness": 148.33719728694203
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 9483.003366426496,
+        "perceivedBrightness": 108.84411094319235
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 14572.24579506257,
+        "perceivedBrightness": 107.91919283449613
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 20473.49419552556,
+        "perceivedBrightness": 73.44329709483617
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 6754.780763716783,
+        "perceivedBrightness": 107.81992262714299
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 26826.792641420652,
+        "perceivedBrightness": 56.75945082800078
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1940,
+        "contrast": 15693.43860963974,
+        "perceivedBrightness": 167.59678017569578
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8344.347442795857,
+        "perceivedBrightness": 119.70053291945649
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1900,
+        "contrast": 11639.442769999505,
+        "perceivedBrightness": 79.577605791344
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8465.662562439738,
+        "perceivedBrightness": 173.53623507844074
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9708.428559037631,
+        "perceivedBrightness": 114.60646754258667
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 8943.717845199011,
+        "perceivedBrightness": 93.82956159379683
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 23014.33731080408,
+        "perceivedBrightness": 195.93903145150045
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 6913.733426067189,
+        "perceivedBrightness": 167.97633898690663
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 4506.120725188683,
+        "perceivedBrightness": 131.43806197270783
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 12096.974780329894,
+        "perceivedBrightness": 105.81524113221708
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 18312.199172337107,
+        "perceivedBrightness": 189.48804630287376
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 16483.40196630576,
+        "perceivedBrightness": 78.00817177952952
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13452.807080302748,
+        "perceivedBrightness": 90.9457426319148
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 15876.628695118377,
+        "perceivedBrightness": 83.35892960376712
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 6473.946466535115,
+        "perceivedBrightness": 137.9621716772394
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15584.812519675606,
+        "perceivedBrightness": 215.28318905827237
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 7550.670866045199,
+        "perceivedBrightness": 169.10107840175556
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1890,
+        "contrast": 15211.97004269798,
+        "perceivedBrightness": 89.30717550220284
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 9081.183894503032,
+        "perceivedBrightness": 166.05634934004962
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 4488.452444922029,
+        "perceivedBrightness": 125.74250121614608
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 6895.113624483011,
+        "perceivedBrightness": 123.42900069521548
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 26514.201020691253,
+        "perceivedBrightness": 71.2766123067672
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10055.135452676132,
+        "perceivedBrightness": 114.84766856270055
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 6057.959456239163,
+        "perceivedBrightness": 152.32326719308068
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1950,
+        "contrast": 6776.9654967110955,
+        "perceivedBrightness": 178.26476672629747
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 27404.98042177678,
+        "perceivedBrightness": 52.37241063282345
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 9582.7504509565,
+        "perceivedBrightness": 144.39411168806623
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 12395.385874451933,
+        "perceivedBrightness": 112.82361513626691
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 7813.690178342433,
+        "perceivedBrightness": 102.78050755009016
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 18713.877329070532,
+        "perceivedBrightness": 146.99221378229907
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12109.560844999682,
+        "perceivedBrightness": 148.05665231995812
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 8523.610286516287,
+        "perceivedBrightness": 140.52862823535733
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13644.041949035163,
+        "perceivedBrightness": 75.33096351589404
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 8032.650600877723,
+        "perceivedBrightness": 106.50379277685536
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1870,
+        "contrast": 11010.41073328443,
+        "perceivedBrightness": 148.64585702020378
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 24594.527817527283,
+        "perceivedBrightness": 42.671377172285304
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 6828.72079854577,
+        "perceivedBrightness": 164.95968990196116
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 19310.553847430976,
+        "perceivedBrightness": 100.53049135412303
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1910,
+        "contrast": 33754.40916106368,
+        "perceivedBrightness": 37.13602769318011
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 15408.558459023876,
+        "perceivedBrightness": 58.74917301403767
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 18574.95845280515,
+        "perceivedBrightness": 60.9681393511058
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 26343.788077826117,
+        "perceivedBrightness": 190.30093821337044
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 24449.636445006065,
+        "perceivedBrightness": 106.58017420416812
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 7861.54257783579,
+        "perceivedBrightness": 163.74988220648498
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 6245.066318375458,
+        "perceivedBrightness": 172.13321419025382
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 12752.308336845088,
+        "perceivedBrightness": 162.17837810096552
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 42160.49818513474,
+        "perceivedBrightness": 43.627065628156586
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1930,
+        "contrast": 21317.95196148146,
+        "perceivedBrightness": 142.38497791752806
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13430.986505675039,
+        "perceivedBrightness": 94.53742484079866
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 9542.203839841914,
+        "perceivedBrightness": 138.63976134054522
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1900,
+        "contrast": 15054.097617400344,
+        "perceivedBrightness": 166.1439527025757
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 22565.785238663866,
+        "perceivedBrightness": 209.29679728416966
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 26204.72197749804,
+        "perceivedBrightness": 64.68077869498134
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 10301.229319653736,
+        "perceivedBrightness": 165.91961768473527
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15675.81125629448,
+        "perceivedBrightness": 89.61402851034605
+    },
+    {
+        "earliestDate": 1770,
+        "latestDate": 1850,
+        "contrast": 12431.825843563265,
+        "perceivedBrightness": 110.35904076806167
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 30925.819565799808,
+        "perceivedBrightness": 26.662883351215584
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 19789.819022710766,
+        "perceivedBrightness": 169.3040981851619
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 13817.598974564105,
+        "perceivedBrightness": 107.61029746272406
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 9282.690096398848,
+        "perceivedBrightness": 139.63971241113708
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 5292.787748288939,
+        "perceivedBrightness": 154.23580119887373
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 16479.763940161203,
+        "perceivedBrightness": 68.00719445508086
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 6616.72222773954,
+        "perceivedBrightness": 130.04940496679404
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 11931.560774992673,
+        "perceivedBrightness": 100.26531158697725
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 20201.560644481313,
+        "perceivedBrightness": 165.01813075270556
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 11906.593038251924,
+        "perceivedBrightness": 72.6818766898908
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9214.160294546311,
+        "perceivedBrightness": 179.28748285212552
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 10592.428751124846,
+        "perceivedBrightness": 94.8909378480698
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 14225.853140744539,
+        "perceivedBrightness": 69.68600598015531
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 16415.359590973367,
+        "perceivedBrightness": 186.91868081399636
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7054.307571164852,
+        "perceivedBrightness": 147.5942080049752
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9091.552791688695,
+        "perceivedBrightness": 126.44702532668599
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1890,
+        "contrast": 7525.78163662669,
+        "perceivedBrightness": 138.81510522970692
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 12521.7305517935,
+        "perceivedBrightness": 121.3862276434609
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15607.186284864698,
+        "perceivedBrightness": 124.02846278452621
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 17620.740299852438,
+        "perceivedBrightness": 92.09473310426162
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 9586.08263989552,
+        "perceivedBrightness": 83.4626315707352
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15072.16705164896,
+        "perceivedBrightness": 59.945772482681825
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 15417.698658927668,
+        "perceivedBrightness": 185.49310483114812
+    },
+    {
+        "earliestDate": 1810,
+        "latestDate": 1890,
+        "contrast": 6446.945890909315,
+        "perceivedBrightness": 158.23301804065133
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7460.187353912015,
+        "perceivedBrightness": 113.45864794355339
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9230.678178591146,
+        "perceivedBrightness": 117.36744947842682
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11444.096550937846,
+        "perceivedBrightness": 116.14222862562472
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 14991.909441272399,
+        "perceivedBrightness": 135.1970338910182
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9627.536893958457,
+        "perceivedBrightness": 122.44647376951588
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9356.081479987028,
+        "perceivedBrightness": 111.19838148599683
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 19747.808904664747,
+        "perceivedBrightness": 174.76933415574536
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 8191.227469019448,
+        "perceivedBrightness": 138.31979841767537
+    },
+    {
+        "earliestDate": 1920,
+        "latestDate": 1930,
+        "contrast": 23844.54615718495,
+        "perceivedBrightness": 187.45017121005102
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 8426.77012850658,
+        "perceivedBrightness": 107.58414454168201
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 6607.325839272847,
+        "perceivedBrightness": 126.35379553257832
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 40239.640677417294,
+        "perceivedBrightness": 181.71205744129142
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 12034.970198212997,
+        "perceivedBrightness": 85.09502992673795
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 10536.910024817225,
+        "perceivedBrightness": 118.41686412188338
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 15518.702463051437,
+        "perceivedBrightness": 138.50134777201023
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 14495.34774788212,
+        "perceivedBrightness": 107.8079194279416
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 12797.728902829302,
+        "perceivedBrightness": 193.49975949622748
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 11981.77370833971,
+        "perceivedBrightness": 100.21367490460445
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12187.108458774686,
+        "perceivedBrightness": 80.31778145646295
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12016.350844298831,
+        "perceivedBrightness": 178.75974042346297
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 15243.930337314792,
+        "perceivedBrightness": 151.45977567533308
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1950,
+        "contrast": 14172.677523308272,
+        "perceivedBrightness": 103.16426863064969
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 24371.97720287264,
+        "perceivedBrightness": 66.32943771807587
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1950,
+        "contrast": 11614.215517793271,
+        "perceivedBrightness": 120.13625313012818
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1830,
+        "contrast": 9310.36329325251,
+        "perceivedBrightness": 152.8911155310347
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 22125.937446859596,
+        "perceivedBrightness": 195.43656221071012
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 15795.0546909913,
+        "perceivedBrightness": 196.9981704345423
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8577.439341449755,
+        "perceivedBrightness": 129.97155959682263
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1890,
+        "contrast": 15579.726617642196,
+        "perceivedBrightness": 85.25268267240907
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12115.049861090905,
+        "perceivedBrightness": 140.22757650354274
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 8155.330170354846,
+        "perceivedBrightness": 123.56497351141195
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 18468.942356126034,
+        "perceivedBrightness": 78.28924137235899
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 20496.73231597692,
+        "perceivedBrightness": 57.33894882833276
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 9672.347948199518,
+        "perceivedBrightness": 137.88969913790496
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 13653.2479542129,
+        "perceivedBrightness": 164.93644064527285
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 15779.704717289349,
+        "perceivedBrightness": 80.87073178997024
+    },
+    {
+        "earliestDate": 1900,
+        "latestDate": 1910,
+        "contrast": 15677.95122972765,
+        "perceivedBrightness": 118.59299451400369
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13896.847416489378,
+        "perceivedBrightness": 183.06889090028292
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 10521.306151091698,
+        "perceivedBrightness": 116.55127772601884
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10199.216449300775,
+        "perceivedBrightness": 140.47749482392584
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 17683.677748668404,
+        "perceivedBrightness": 82.01640266486073
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 30593.845168646665,
+        "perceivedBrightness": 92.13969021858411
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14936.540253032786,
+        "perceivedBrightness": 142.16922675526607
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10548.606976493686,
+        "perceivedBrightness": 159.64619794153992
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 15456.2637553012,
+        "perceivedBrightness": 150.88270031744347
+    },
+    {
+        "earliestDate": 1810,
+        "latestDate": 1820,
+        "contrast": 10853.371965769153,
+        "perceivedBrightness": 82.35518501494984
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14894.307035455065,
+        "perceivedBrightness": 99.89533772367919
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11253.793255116527,
+        "perceivedBrightness": 121.99305653300904
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 9587.050521365722,
+        "perceivedBrightness": 105.03472138920917
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 15594.68549611233,
+        "perceivedBrightness": 132.25479629013014
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 7476.166514999148,
+        "perceivedBrightness": 119.8942335313703
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 9267.832579283902,
+        "perceivedBrightness": 124.27704575003102
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 13121.696306535123,
+        "perceivedBrightness": 112.99959270743291
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 17677.51030396744,
+        "perceivedBrightness": 157.83805797442
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 26203.84379485193,
+        "perceivedBrightness": 54.38255693039206
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 16118.054194462338,
+        "perceivedBrightness": 187.46455146423835
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 19449.04737715722,
+        "perceivedBrightness": 146.21584563434155
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11285.442923193412,
+        "perceivedBrightness": 128.05334017728532
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 11809.514044067659,
+        "perceivedBrightness": 148.14680754951644
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14396.732291321137,
+        "perceivedBrightness": 124.0719564834784
+    },
+    {
+        "earliestDate": 1940,
+        "latestDate": 1950,
+        "contrast": 50647.38541615142,
+        "perceivedBrightness": 41.984360008849336
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 9510.050607161944,
+        "perceivedBrightness": 110.69436125579296
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 13035.098968596049,
+        "perceivedBrightness": 94.19348767686778
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12492.308335406831,
+        "perceivedBrightness": 122.11007878235118
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14989.677267831687,
+        "perceivedBrightness": 193.1167338417893
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 7802.86507568002,
+        "perceivedBrightness": 115.47982854761791
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10507.273300292101,
+        "perceivedBrightness": 184.18077554972254
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 13840.845945685094,
+        "perceivedBrightness": 166.4939528409071
+    },
+    {
+        "earliestDate": 1930,
+        "latestDate": 1940,
+        "contrast": 7203.6465361626915,
+        "perceivedBrightness": 126.36746348768862
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1920,
+        "contrast": 9460.328321221865,
+        "perceivedBrightness": 143.15362260291204
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 6275.263141892936,
+        "perceivedBrightness": 129.62841438703688
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11714.450381733397,
+        "perceivedBrightness": 111.61553559092556
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12150.16320251116,
+        "perceivedBrightness": 170.03774406397721
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12177.83358132205,
+        "perceivedBrightness": 192.35875330973585
+    },
+    {
+        "earliestDate": 1850,
+        "latestDate": 1860,
+        "contrast": 11310.629727129199,
+        "perceivedBrightness": 92.81785210687998
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 12422.294265408715,
+        "perceivedBrightness": 82.39791106350494
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14162.455255473227,
+        "perceivedBrightness": 154.8770045369194
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 8396.795323868357,
+        "perceivedBrightness": 105.58484227020182
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1890,
+        "contrast": 33383.00342345356,
+        "perceivedBrightness": 69.55050719551986
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1920,
+        "contrast": 58769.742756357526,
+        "perceivedBrightness": 56.096123599109866
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 10796.099958253153,
+        "perceivedBrightness": 83.99445954251533
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1950,
+        "contrast": 10050.12774580658,
+        "perceivedBrightness": 106.01652389361571
+    },
+    {
+        "earliestDate": 1820,
+        "latestDate": 1910,
+        "contrast": 5110.318989630809,
+        "perceivedBrightness": 127.85593628665526
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14004.867201234674,
+        "perceivedBrightness": 199.76955628687304
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10352.551217310216,
+        "perceivedBrightness": 113.841670736336
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11765.55346824205,
+        "perceivedBrightness": 94.01294117579596
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 12863.93816379849,
+        "perceivedBrightness": 181.71690053379137
+    },
+    {
+        "earliestDate": 1800,
+        "latestDate": 1810,
+        "contrast": 41587.47055440234,
+        "perceivedBrightness": 30.668951789471603
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 13081.503907891763,
+        "perceivedBrightness": 156.94702979309557
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 13647.430743636098,
+        "perceivedBrightness": 155.154446378524
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 8486.649484033363,
+        "perceivedBrightness": 112.49335705257897
+    },
+    {
+        "earliestDate": 1700,
+        "latestDate": 1800,
+        "contrast": 7201.618196248066,
+        "perceivedBrightness": 123.40884118624258
+    },
+    {
+        "earliestDate": 1870,
+        "latestDate": 1880,
+        "contrast": 25487.741885729967,
+        "perceivedBrightness": 70.55427422897509
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15789.762682891445,
+        "perceivedBrightness": 171.66015652552275
+    },
+    {
+        "earliestDate": 1790,
+        "latestDate": 1800,
+        "contrast": 30135.395785819186,
+        "perceivedBrightness": 116.9938296794277
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11878.828971673986,
+        "perceivedBrightness": 147.4635025838388
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11095.687741155063,
+        "perceivedBrightness": 190.2832579226356
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 10699.622783883176,
+        "perceivedBrightness": 168.64070543251472
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 7576.486263279057,
+        "perceivedBrightness": 144.95757630418296
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 16877.188744283103,
+        "perceivedBrightness": 173.50268323132397
+    },
+    {
+        "earliestDate": 1890,
+        "latestDate": 1900,
+        "contrast": 11781.264888418975,
+        "perceivedBrightness": 136.29713248908172
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15426.70593762445,
+        "perceivedBrightness": 129.43589079259303
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 12234.746284436438,
+        "perceivedBrightness": 128.65168991757344
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 15548.04603190241,
+        "perceivedBrightness": 133.89149551574647
+    },
+    {
+        "earliestDate": 1910,
+        "latestDate": 1920,
+        "contrast": 12897.612689103553,
+        "perceivedBrightness": 113.91045412019473
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 12628.558835037353,
+        "perceivedBrightness": 114.18263485117207
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 12841.71048968093,
+        "perceivedBrightness": 119.4501055477016
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 13927.786531112903,
+        "perceivedBrightness": 92.44695962232306
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 5569.255546987968,
+        "perceivedBrightness": 127.17418079955885
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11815.903797788544,
+        "perceivedBrightness": 142.2166832173506
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10298.30314014917,
+        "perceivedBrightness": 117.44599843305825
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 10532.146140470077,
+        "perceivedBrightness": 156.99770822393856
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 14326.981717473242,
+        "perceivedBrightness": 133.9232935276338
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 10266.429668995814,
+        "perceivedBrightness": 97.00272867478739
+    },
+    {
+        "earliestDate": 1840,
+        "latestDate": 1850,
+        "contrast": 7610.346804474485,
+        "perceivedBrightness": 121.8548810224401
+    },
+    {
+        "earliestDate": 1790,
+        "latestDate": 1800,
+        "contrast": 32562.19409523717,
+        "perceivedBrightness": 97.50404123460234
+    },
+    {
+        "earliestDate": 1860,
+        "latestDate": 1870,
+        "contrast": 6635.290775526062,
+        "perceivedBrightness": 142.5144290524489
+    },
+    {
+        "earliestDate": 1830,
+        "latestDate": 1840,
+        "contrast": 11460.660116275207,
+        "perceivedBrightness": 173.7910087911437
+    },
+    {
+        "earliestDate": 1880,
+        "latestDate": 1890,
+        "contrast": 17884.40970029833,
+        "perceivedBrightness": 183.62150073344327
+    }
+]
+                `
+            )
+        }
+    </script>
+</html>
