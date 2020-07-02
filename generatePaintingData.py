@@ -1,4 +1,4 @@
-import urllib, json, os, math, numpy, threading, itertools
+import urllib, json, os, math, numpy, threading, itertools, cv2
 from PIL import Image, ImageStat
 import requests
 from io import BytesIO
@@ -24,22 +24,21 @@ allPaintingData = []
 index = FastWriteCounter()
 
 def thread_function(index):
-    while index.value() < paintings.__len__():
+    while index.value() < len(paintings):
         try:
             painting = paintings[index.value()]
             response = requests.get(painting['imageURL'])
             img = Image.open(BytesIO(response.content))
-            greyScaleImg = img.convert('L')
-            statGrey = ImageStat.Stat(greyScaleImg)
             statRGB = ImageStat.Stat(img)
             r,g,b = statRGB.rms
             perceivedBrightness = math.sqrt(0.241*(r**2) + 0.691*(g**2) + 0.068*(b**2))
-            contrast = numpy.std(statGrey.h)
+            img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+            saturation = img_hsv[:, :, 1].mean()
             paintingData = {
                 'earliestDate': painting['earliestDate'],
                 'latestDate': painting['latestDate'],
-                'contrast': contrast,
-                'perceivedBrightness': perceivedBrightness
+                'perceivedBrightness': perceivedBrightness,
+                'saturation': saturation
             }
             allPaintingData.append(paintingData)
         except:
