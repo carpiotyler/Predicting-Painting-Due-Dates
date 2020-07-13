@@ -12,7 +12,11 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "env": {
-                "SMITHSONIAN_API_KEY": "EpwCM7jUZa1yFJZdF6RgiscdKXDdlG5jQNkXE5uE"
+                "SMITHSONIAN_API_KEY": "EpwCM7jUZa1yFJZdF6RgiscdKXDdlG5jQNkXE5uE",
+                "DB_HOST": "192.168.1.35",
+                "DB_NAME": "EDWARD",
+                "DB_USER": "root",
+                "DB_PASS": "Birdman176!"
             },
         }
     ]

@@ -10,3 +10,5 @@ paintingData.json
 get-pip.py
 get-pip.py
 get-pip.py
+.vscode/launch.json
+*.pyc
