@@ -6,7 +6,7 @@ paintingData.json
 .idea/vcs.xml
 .idea/Predicting Painting Due Dates.iml
 .idea/workspace.xml
-.vscode/settings.json
+.vscode/**
 get-pip.py
 get-pip.py
 get-pip.py
