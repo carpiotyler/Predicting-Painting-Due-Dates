@@ -56,14 +56,25 @@ if __name__ == "__main__":
     
     replaceOrInsertString = """
     REPLACE INTO PAINTING_COMPUTED_VALUES
-        (url, perceivedBrightness, colorfulness, redLevel, blueLevel, greenLevel, cpbdSharpness)
+        (url, perceivedBrightness, colorfulness, redLevel, blueLevel, greenLevel, cpbdSharpness, numFacesFrontal, numFacesAlt, numFacesProfile)
     VALUES
     """
     comma = False
     for painting in allPaintingData:
         if comma == True:
             replaceOrInsertString += ','
-        replaceOrInsertString += '("{url}", {perceivedBrightness}, {colorfulness}, "{redLevel}", {greenLevel}, {blueLevel}, {cpbdSharpness})'.format(url=painting['url'], perceivedBrightness=painting['perceivedBrightness'], colorfulness=painting['colorfulness'], redLevel=painting['redLevel'], greenLevel=painting['greenLevel'], blueLevel=painting['blueLevel'], cpbdSharpness=painting['cpbdSharpness'])
+        replaceOrInsertString += '("{url}", {perceivedBrightness}, {colorfulness}, {redLevel}, {greenLevel}, {blueLevel}, {cpbdSharpness}, {numFacesFrontal}, {numFacesAlt}, {numFacesProfile})'.format(
+            url=painting['url'], 
+            perceivedBrightness=painting['perceivedBrightness'], 
+            colorfulness=painting['colorfulness'], 
+            redLevel=painting['redLevel'], 
+            greenLevel=painting['greenLevel'], 
+            blueLevel=painting['blueLevel'], 
+            cpbdSharpness=painting['cpbdSharpness'],
+            numFacesFrontal=painting['numFacesFrontal'],
+            numFacesAlt=painting['numFacesAlt'],
+            numFacesProfile=painting['numFacesProfile']
+            )
         comma = True
 
     mySql.write(replaceOrInsertString)

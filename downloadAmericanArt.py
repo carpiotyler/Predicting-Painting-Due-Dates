@@ -76,7 +76,13 @@ comma = False
 for image in imageData:
     if comma == True:
         replaceOrInsertString += ','
-    replaceOrInsertString += '("{url}", "{recordUrl}", "{title}", "{painter}", {earliestDate}, {latestDate})'.format(url=image['imageURL'], recordUrl=image['recordLink'], title=image['title'].replace('"', '\\"'), painter=image['painter'].replace('"', '\\"'), earliestDate=image['earliestDate'], latestDate=image['latestDate'])
+    replaceOrInsertString += '("{url}", "{recordUrl}", "{title}", "{painter}", {earliestDate}, {latestDate})'.format(
+        url=image['imageURL'], 
+        recordUrl=image['recordLink'], 
+        title=image['title'].replace('"', '\\"'), 
+        painter=image['painter'].replace('"', '\\"'), 
+        earliestDate=image['earliestDate'], 
+        latestDate=image['latestDate'])
     comma = True
 
 mysql.write(replaceOrInsertString)

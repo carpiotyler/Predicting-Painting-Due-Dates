@@ -4,11 +4,23 @@ from PIL import Image, ImageStat
 class ImageAnalysis:
 
     def __init__(self, image, url):
+        npimg = np.array(image)
         statRGB = ImageStat.Stat(image)
         r,g,b = statRGB.rms
         perceivedBrightness = math.sqrt(0.241*(r**2) + 0.691*(g**2) + 0.068*(b**2))
-        colorfulness = self.image_colorfulness(np.array(image))
-        cpbdSharpness = cpbd.compute(cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY))
+        colorfulness = self.image_colorfulness(npimg)
+        greyImg = cv2.cvtColor(npimg, cv2.COLOR_BGR2GRAY)
+        # cpbd algorithm
+        cpbdSharpness = 0.0 # cpbd.compute(greyImg)
+        # num frontal faces in the image
+        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        faces_frontal = face_cascade.detectMultiScale(greyImg, 1.1, 35)
+        # num face 'alt' faces in the image
+        face_alt_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
+        faces_alt = face_alt_cascade.detectMultiScale(greyImg, 1.1, 20)
+        # num face profile faces in the image
+        face_profile_cascade = cv2.CascadeClassifier('haarcascade_profileface.xml')
+        faces_profile = face_profile_cascade.detectMultiScale(greyImg, 1.1, 20)
         
         self.data = {
             'url': url,
@@ -17,7 +29,10 @@ class ImageAnalysis:
             'redLevel': r,
             'greenLevel': g,
             'blueLevel': b,
-            'cpbdSharpness': cpbdSharpness
+            'cpbdSharpness': cpbdSharpness,
+            'numFacesFrontal': len(faces_frontal),
+            'numFacesAlt': len(faces_alt),
+            'numFacesProfile': len(faces_profile)
         }
 
     def getData(self):
