@@ -12,3 +12,4 @@ get-pip.py
 get-pip.py
 .vscode/launch.json
 *.pyc
+cbdData.json

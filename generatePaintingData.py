@@ -2,6 +2,8 @@ import urllib, json, os, math, numpy, threading, itertools, cv2
 from PIL import Image, ImageStat
 import requests
 from io import BytesIO
+from mySQL import MySQL
+from imageAnalysis import ImageAnalysis
 
 class FastWriteCounter(object):
     def __init__(self):
@@ -18,41 +20,51 @@ class FastWriteCounter(object):
             self._number_of_read += 1
         return value
 
-paintings = json.load(open('paintings.json'))
+mySql = MySQL()
+result = mySql.query('SELECT url, recordUrl, title, painter, earliestDate, latestDate FROM AMERICAN_PAINTINGS')
+
+paintings = []
+for row in result:
+    paintings.append({
+        "url": row[0],
+        "recordUrl": row[1],
+        "title": row[2],
+        "painter": row[3],
+        "earliestDate": row[4],
+        "latestDate": row[5]
+    })
 
 allPaintingData = []
 index = FastWriteCounter()
 
 def thread_function(index):
     while index.value() < len(paintings):
-        try:
-            painting = paintings[index.value()]
-            response = requests.get(painting['imageURL'])
-            img = Image.open(BytesIO(response.content))
-            statRGB = ImageStat.Stat(img)
-            r,g,b = statRGB.rms
-            perceivedBrightness = math.sqrt(0.241*(r**2) + 0.691*(g**2) + 0.068*(b**2))
-            img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-            saturation = img_hsv[:, :, 1].mean()
-            paintingData = {
-                'earliestDate': painting['earliestDate'],
-                'latestDate': painting['latestDate'],
-                'perceivedBrightness': perceivedBrightness,
-                'saturation': saturation
-            }
-            allPaintingData.append(paintingData)
-        except:
-            print(f'Failed to analyze painting #{index}')
+        painting = paintings[index.value()]
+        response = requests.get(painting['url'])
+        img = Image.open(BytesIO(response.content))
+        paintingData = ImageAnalysis(img, painting['url']).getData()
+        allPaintingData.append(paintingData)
         print(f'Analyzed {index.value()} / {paintings.__len__()} paintings')
         index.increment()
     
 # 20 threads to analayze paintings
 if __name__ == "__main__":
-    for i in range(1, 100):
+    for i in range(1, 10):
         thread = threading.Thread(target=thread_function, args=(index,))
         thread.start()
     thread.join()
     
+    replaceOrInsertString = """
+    REPLACE INTO PAINTING_COMPUTED_VALUES
+        (url, perceivedBrightness, colorfulness, redLevel, blueLevel, greenLevel, cpbdSharpness)
+    VALUES
+    """
+    comma = False
+    for painting in allPaintingData:
+        if comma == True:
+            replaceOrInsertString += ','
+        replaceOrInsertString += '("{url}", {perceivedBrightness}, {colorfulness}, "{redLevel}", {greenLevel}, {blueLevel}, {cpbdSharpness})'.format(url=painting['url'], perceivedBrightness=painting['perceivedBrightness'], colorfulness=painting['colorfulness'], redLevel=painting['redLevel'], greenLevel=painting['greenLevel'], blueLevel=painting['blueLevel'], cpbdSharpness=painting['cpbdSharpness'])
+        comma = True
 
-with open('paintingData.json', 'w') as outfile:
-    json.dump(allPaintingData, outfile, indent=4)
+    mySql.write(replaceOrInsertString)
+
