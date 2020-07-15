@@ -63,7 +63,7 @@ if __name__ == "__main__":
     for painting in allPaintingData:
         if comma == True:
             replaceOrInsertString += ','
-        replaceOrInsertString += '("{url}", {perceivedBrightness}, {colorfulness}, {redLevel}, {greenLevel}, {blueLevel}, {cpbdSharpness}, {numFacesFrontal}, {numFacesAlt}, {numFacesProfile})'.format(
+        replaceOrInsertString += '("{url}", {perceivedBrightness}, {colorfulness}, {redLevel}, {greenLevel}, {blueLevel}, {cpbdSharpness}, {numFacesFrontal}, {numFacesAlt}, {numFacesProfile}, {skyValue}, {thinEdgePercentage}, {medEdgePercentage}, {largeEdgePercentage})'.format(
             url=painting['url'], 
             perceivedBrightness=painting['perceivedBrightness'], 
             colorfulness=painting['colorfulness'], 
@@ -73,7 +73,11 @@ if __name__ == "__main__":
             cpbdSharpness=painting['cpbdSharpness'],
             numFacesFrontal=painting['numFacesFrontal'],
             numFacesAlt=painting['numFacesAlt'],
-            numFacesProfile=painting['numFacesProfile']
+            numFacesProfile=painting['numFacesProfile'],
+            skyValue=painting['skyValue'],
+            thinEdgePercentage=painting['thinEdgePercentage'],
+            medEdgePercentage=painting['medEdgePercentage'],
+            largeEdgePercentage=painting['largeEdgePercentage']
             )
         comma = True
 
