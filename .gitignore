@@ -14,3 +14,4 @@ get-pip.py
 *.pyc
 cbdData.json
 skydetector/
+dataset.csv
