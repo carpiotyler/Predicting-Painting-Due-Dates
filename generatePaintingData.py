@@ -21,7 +21,7 @@ class FastWriteCounter(object):
         return value
 
 mySql = MySQL()
-result = mySql.query('SELECT url, recordUrl, title, painter, earliestDate, latestDate FROM AMERICAN_PAINTINGS')
+result = mySql.query('SELECT  * FROM AMERICAN_PAINTINGS A WHERE (SELECT thinEdgePercentage FROM PAINTING_COMPUTED_VALUES P WHERE P.url = A.url) = 0')
 
 paintings = []
 for row in result:
@@ -44,8 +44,8 @@ def thread_function(index):
         img = Image.open(BytesIO(response.content))
         paintingData = ImageAnalysis(img, painting['url']).getData()
         allPaintingData.append(paintingData)
-        print(f'Analyzed {index.value()} / {paintings.__len__()} paintings')
         index.increment()
+        print(f'Analyzed {index.value()} / {paintings.__len__()} paintings')
     
 # 20 threads to analayze paintings
 if __name__ == "__main__":
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     
     replaceOrInsertString = """
     REPLACE INTO PAINTING_COMPUTED_VALUES
-        (url, perceivedBrightness, colorfulness, redLevel, blueLevel, greenLevel, cpbdSharpness, numFacesFrontal, numFacesAlt, numFacesProfile)
+        (url, perceivedBrightness, colorfulness, redLevel, blueLevel, greenLevel, cpbdSharpness, numFacesFrontal, numFacesAlt, numFacesProfile, skyValue, thinEdgePercentage, medEdgePercentage, largeEdgePercentage)
     VALUES
     """
     comma = False

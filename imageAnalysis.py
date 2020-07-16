@@ -13,7 +13,7 @@ class ImageAnalysis:
         greyImg = cv2.cvtColor(npimg, cv2.COLOR_BGR2GRAY)
 
         # cpbd algorithm
-        cpbdSharpness = 0.0 # cpbd.compute(greyImg)
+        cpbdSharpness = cpbd.compute(greyImg)
 
         # num frontal faces in the image
         face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
