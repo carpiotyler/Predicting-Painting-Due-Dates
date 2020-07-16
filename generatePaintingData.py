@@ -12,7 +12,7 @@ class FastWriteCounter(object):
         self._read_lock = threading.Lock()
 
     def increment(self):
-        next(self._counter)
+        return next(self._counter)
 
     def value(self):
         with self._read_lock:
@@ -38,21 +38,24 @@ allPaintingData = []
 index = FastWriteCounter()
 
 def thread_function(index):
-    while index.value() < len(paintings):
-        painting = paintings[index.value()]
+    while index.increment() < len(paintings):
+        paintingIndex = index.value() - 1
+        painting = paintings[paintingIndex]
         response = requests.get(painting['url'])
         img = Image.open(BytesIO(response.content))
         paintingData = ImageAnalysis(img, painting['url']).getData()
         allPaintingData.append(paintingData)
-        index.increment()
-        print(f'Analyzed {index.value()} / {paintings.__len__()} paintings')
+        print(f'Analyzed {paintingIndex} / {paintings.__len__()} paintings')
     
 # 20 threads to analayze paintings
 if __name__ == "__main__":
-    for i in range(1, 10):
+    threadList = []
+    for i in range(1, 2):
         thread = threading.Thread(target=thread_function, args=(index,))
         thread.start()
-    thread.join()
+        threadList.append(thread)
+    while len(threadList) > 0:
+        threadList.pop().join()
     
     replaceOrInsertString = """
     REPLACE INTO PAINTING_COMPUTED_VALUES
